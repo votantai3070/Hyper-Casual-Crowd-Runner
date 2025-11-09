@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class CrowCounter : MonoBehaviour
+public class CrowdCounter : MonoBehaviour
 {
     [Header("Elements")]
     [SerializeField] private TextMeshPro crowdCounterText;

@@ -3,15 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDetection : MonoBehaviour
 {
-    private CrowSystem crowdSystem;
+    private CrowdSystem crowdSystem;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        crowdSystem = GetComponent<CrowSystem>();
+        crowdSystem = GetComponent<CrowdSystem>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Detected();
@@ -37,6 +35,8 @@ public class PlayerDetection : MonoBehaviour
 
             else if (collider.CompareTag("Finish"))
             {
+                PlayerPrefs.SetInt("level", PlayerPrefs.GetInt("level") + 1);
+
                 SceneManager.LoadScene(0);
             }
         }

@@ -1,15 +1,21 @@
 ﻿using System;
 using UnityEngine;
 
-public class CrowSystem : MonoBehaviour
+public class CrowdSystem : MonoBehaviour
 {
     [Header("Elements")]
     [SerializeField] Transform runnersParent;
     [SerializeField] GameObject runnerPrefab;
+    private PlayerAnimation playerAnimation;
 
     [Header("Setting")]
     [SerializeField] float radius;
     [SerializeField] float angle;
+
+    private void Start()
+    {
+        playerAnimation = GetComponent<PlayerAnimation>();
+    }
 
     void Update()
     {
@@ -65,9 +71,9 @@ public class CrowSystem : MonoBehaviour
     private void AddRunner(int amount)
     {
         for (int i = 0; i < amount; i++)
-        {
             Instantiate(runnerPrefab, runnersParent);
-        }
+
+        playerAnimation.Run();
     }
 
     private void RemoveRunner(int amount)

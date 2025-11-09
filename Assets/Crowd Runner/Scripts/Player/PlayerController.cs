@@ -3,28 +3,77 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     [Header("Elements")]
-    private CrowSystem crowdSystem;
+    private CrowdSystem crowdSystem;
+    private PlayerAnimation playerAnimation;
 
     [Header("Setting")]
     [SerializeField] private float roadWidth;
     [SerializeField] private float moveSpeed;
+    private bool canMove;
 
     [Header("Control")]
     [SerializeField] private float slideSpeed;
     private Vector3 clickedScreenPosition;
     private Vector3 clickedPlayerPosition;
 
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+    }
+
     private void Start()
     {
-        crowdSystem = GetComponent<CrowSystem>();
+        crowdSystem = GetComponent<CrowdSystem>();
+        playerAnimation = GetComponent<PlayerAnimation>();
+    }
+
+    private void OnEnable()
+    {
+        GameManager.onGameStateChanged += GameStateChangedCallBack;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.onGameStateChanged -= GameStateChangedCallBack;
     }
 
     private void Update()
     {
-        MoveFoward();
+        if (canMove)
+        {
+            MoveFoward();
+            ManageControl();
+        }
+    }
 
-        ManageControl();
+    private void GameStateChangedCallBack(GameState gameState)
+    {
+        if (gameState == GameState.Game)
+            StartMoving();
+
+        else if (gameState == GameState.GameOver)
+            StopMoving();
+
+    }
+
+    private void StartMoving()
+    {
+        canMove = true;
+
+        playerAnimation.Run();
+    }
+
+    private void StopMoving()
+    {
+        canMove = false;
+
+        playerAnimation.Idle();
     }
 
     private void ManageControl()
