@@ -10,6 +10,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private EnemyState enemyState;
     private Transform targetRunner;
+    private Collider[] detectedCollider;
+
+    private void Start()
+    {
+        detectedCollider = new Collider[100];
+    }
 
     private void Update()
     {
@@ -44,6 +50,8 @@ public class Enemy : MonoBehaviour
 
         if (Vector3.Distance(transform.position, targetRunner.position) < .5f)
         {
+            SoundManager.instance.SetSoundEffect(SoundEffect.RunnerDie);
+
             Destroy(targetRunner.gameObject);
             Destroy(gameObject);
         }
@@ -57,21 +65,21 @@ public class Enemy : MonoBehaviour
 
     private void SearchTarget()
     {
-        Collider[] detectedCollider = Physics.OverlapSphere(transform.position, searchRadius);
+        int count = Physics.OverlapSphereNonAlloc(transform.position, searchRadius, detectedCollider);
 
-        Debug.Log("detectedCollider: " + detectedCollider.Length);
+        Debug.Log("count: " + count);
 
         float minDistance = float.MaxValue;
 
-        foreach (var target in detectedCollider)
+        for (int i = 0; i < count; i++)
         {
-            if (target.TryGetComponent(out Runner runner))
+            if (detectedCollider[i].TryGetComponent(out Runner runner))
             {
-                float distance = Vector3.Distance(transform.position, target.transform.position);
+                float distance = Vector3.Distance(transform.position, runner.transform.position);
                 if (distance < minDistance)
                 {
                     minDistance = distance;
-                    targetRunner = target.transform;
+                    targetRunner = runner.transform;
                 }
 
                 StartRunningToTarget();

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class ChunkManager : MonoBehaviour
@@ -31,7 +30,11 @@ public class ChunkManager : MonoBehaviour
     {
         int currentLevel = GetLevel();
 
+
         currentLevel %= levels.Length;
+
+        //Debug.Log("Current level: " + currentLevel);
+        //Debug.Log("Levels length: " + levels.Length);
 
         LevelSO level = levels[currentLevel];
 

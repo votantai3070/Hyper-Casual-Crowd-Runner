@@ -70,6 +70,7 @@
     <Compile Include="Assets\Crowd Runner\Scripts\CrowdSystem\CrowdCounter.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\CrowdSystem\CrowdSystem.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Chunk\ChunkManager.cs" />
+    <Compile Include="Assets\Crowd Runner\Scripts\Manager\SoundManager.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Player\Runner.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Data\LevelSO.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Player\PlayerAnimation.cs" />

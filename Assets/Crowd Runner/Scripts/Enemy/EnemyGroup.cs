@@ -5,6 +5,7 @@ public class EnemyGroup : MonoBehaviour
 {
     [Header("Elements")]
     [SerializeField] private Enemy enemyPrefab;
+    [SerializeField] private Transform enemyParent;
 
     [Header("Settings")]
     [SerializeField] private int enemyCount;
@@ -16,6 +17,8 @@ public class EnemyGroup : MonoBehaviour
         IntializeEnemyGroup();
     }
 
+
+
     private void IntializeEnemyGroup()
     {
         for (int i = 0; i < enemyCount; i++)
@@ -26,7 +29,7 @@ public class EnemyGroup : MonoBehaviour
 
     private void CreateNewEnemy(int i)
     {
-        Enemy enemy = Instantiate(enemyPrefab, transform);
+        Enemy enemy = Instantiate(enemyPrefab, enemyParent);
 
         Vector3 worldTransform = transform.TransformPoint(GetRunnerLocalPosition(i));
 

@@ -17,6 +17,14 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+    private void Start()
+    {
+        //ResetLevelGame();
+    }
+
+    [ContextMenu("Reset Level")]
+    private void ResetLevelGame() => PlayerPrefs.DeleteAll();
+
     public void SetGameState(GameState gameState)
     {
         this.gameState = gameState;
