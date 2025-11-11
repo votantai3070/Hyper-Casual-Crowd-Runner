@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject levelCompletePanel;
+    [SerializeField] private GameObject settingsPanel;
 
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private Slider progressBarSlider;
@@ -38,6 +39,17 @@ public class UIManager : MonoBehaviour
     {
         UpdateProgressBar();
     }
+
+    public void ShowSettingsPanel()
+    {
+        settingsPanel.SetActive(true);
+    }
+
+    public void HideSettingPanel()
+    {
+        settingsPanel.SetActive(false);
+    }
+
     private void GameStateChangedCallback(GameState state)
     {
         if (state == GameState.GameOver)

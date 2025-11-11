@@ -61,12 +61,15 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.58f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\FatMachines\Taptic.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Chunk\Chunk.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Manager\UIManager.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Crowd Runner\Scripts\Manager\SettingsManager.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Enemy\EnemyGroup.cs" />
+    <Compile Include="Assets\Crowd Runner\Scripts\Manager\VibrationManager.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\CrowdSystem\CrowdCounter.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\CrowdSystem\CrowdSystem.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Chunk\ChunkManager.cs" />

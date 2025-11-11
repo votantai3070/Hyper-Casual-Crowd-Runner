@@ -9,10 +9,12 @@ public class SoundManager : MonoBehaviour
 
     [Header("Sound Event")]
     public static Action<SoundEffect> onChangeSoundEffect;
+
     [SerializeField] private AudioSource doorHitSource;
     [SerializeField] private AudioSource runnerDieSource;
     [SerializeField] private AudioSource levelCompleteSource;
     [SerializeField] private AudioSource gameOverSource;
+    [SerializeField] private AudioSource buttonSource;
 
     private void Awake()
     {
@@ -57,5 +59,23 @@ public class SoundManager : MonoBehaviour
     public void SetSoundEffect(SoundEffect sound)
     {
         onChangeSoundEffect?.Invoke(sound);
+    }
+
+    internal void DisableSounds()
+    {
+        doorHitSource.volume = 0;
+        runnerDieSource.volume = 0;
+        levelCompleteSource.volume = 0;
+        gameOverSource.volume = 0;
+        buttonSource.volume = 0;
+    }
+
+    internal void EnableSounds()
+    {
+        doorHitSource.volume = 0.02f;
+        runnerDieSource.volume = 0.02f;
+        levelCompleteSource.volume = 0.02f;
+        gameOverSource.volume = 0.02f;
+        buttonSource.volume = 0.02f;
     }
 }
