@@ -46,11 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63bbf2fb0020dff4d9e4fa7f921b69bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 8977732515247306462, guid: 2e298dba1c028fd4889a615a5491c559, type: 3}
+  enemyPrefab: {fileID: 7516960360102783939, guid: 2e298dba1c028fd4889a615a5491c559, type: 3}
   enemyParent: {fileID: 9033072960494850662}
   enemyCount: 5
   angle: 137.508
-  radius: 0.4
+  radius: 0.6
 --- !u!1 &2742988415054546937
 GameObject:
   m_ObjectHideFlags: 0

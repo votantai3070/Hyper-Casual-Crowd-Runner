@@ -11,7 +11,7 @@ public class PlayerDetection : MonoBehaviour
 
     void Start()
     {
-        detectedCollider = new Collider[5];
+        detectedCollider = new Collider[20];
 
         crowdSystem = GetComponent<CrowdSystem>();
     }
@@ -24,8 +24,7 @@ public class PlayerDetection : MonoBehaviour
 
     private void Detected()
     {
-
-        int count = Physics.OverlapSphereNonAlloc(transform.position, 1, detectedCollider);
+        int count = Physics.OverlapSphereNonAlloc(transform.position, crowdSystem.GetCrowdRadius(), detectedCollider);
 
         for (int i = 0; i < count; i++)
         {
@@ -55,6 +54,13 @@ public class PlayerDetection : MonoBehaviour
                 SoundManager.instance.SetSoundEffect(SoundEffect.CompletedLevel);
 
                 //SceneManager.LoadScene(0);
+            }
+
+            else if (detectedCollider[i].CompareTag("Coin"))
+            {
+                DataManager.instance.AddCoins(1);
+
+                Destroy(detectedCollider[i].transform.parent.gameObject);
             }
         }
     }

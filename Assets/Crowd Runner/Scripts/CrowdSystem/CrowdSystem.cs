@@ -15,7 +15,10 @@ public class CrowdSystem : MonoBehaviour
     private void Start()
     {
         playerAnimation = GetComponent<PlayerAnimation>();
+
+        GenerateRunner();
     }
+
 
     void Update()
     {
@@ -27,7 +30,11 @@ public class CrowdSystem : MonoBehaviour
         if (runnersParent.childCount <= 0)
             GameManager.instance.SetGameState(GameState.GameOver);
     }
-
+    private void GenerateRunner()
+    {
+        GameObject runner = ObjectPool.instance.GetObject(runnerPrefab, runnersParent);
+        runner.transform.localPosition = Vector3.zero;
+    }
     private void PlaceRunners()
     {
         for (int i = 0; i < runnersParent.childCount; i++)
@@ -77,7 +84,7 @@ public class CrowdSystem : MonoBehaviour
     private void AddRunner(int amount)
     {
         for (int i = 0; i < amount; i++)
-            Instantiate(runnerPrefab, runnersParent);
+            ObjectPool.instance.GetObject(runnerPrefab, runnersParent);
 
         playerAnimation.Run();
     }
@@ -92,8 +99,7 @@ public class CrowdSystem : MonoBehaviour
         for (int i = runnerAmount - 1; i >= runnerAmount - amount; i--)
         {
             Transform runnerToDestroy = runnersParent.GetChild(i);
-            runnerToDestroy.SetParent(null);
-            Destroy(runnerToDestroy.gameObject);
+            ObjectPool.instance.DelayReturnToPool(runnerToDestroy.gameObject);
         }
     }
 }

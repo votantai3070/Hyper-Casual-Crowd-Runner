@@ -106,7 +106,6 @@ public class PlayerController : MonoBehaviour
 
             transform.position = position;
         }
-
     }
 
     private void MoveFoward()

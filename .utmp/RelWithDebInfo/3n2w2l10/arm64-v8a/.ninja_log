@@ -1,0 +1,12 @@
+# ninja log v5
+275	1221	7846631032345742	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	6b43158adcbdf824
+1224	1721	7846631036776392	F:/Game Project/Hyper Casual Crowd Runner/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3n2w2l10/obj/arm64-v8a/libswappywrapper.so	8ec0ee4766000d77
+90	3697	7846631056929630	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	b5acf3cb378c8c9f
+117	3705	7846631057081807	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	81cbb559720cbe5c
+28	3749	7846631057642434	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	43f9c6f2a18c5dae
+193	3783	7846631057965991	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	bc04af95125015c6
+2	3872	7846631058857386	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	d8d76eebcb35bae1
+228	4178	7846631061937271	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	ee8ebade4ede6470
+140	4251	7846631062656026	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	e3a46d1259aead3d
+63	4428	7846631064223629	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	67ab96356016a4d5
+4429	4572	7846631065932443	F:/Game Project/Hyper Casual Crowd Runner/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3n2w2l10/obj/arm64-v8a/libgame.so	e27b76cc58d0476

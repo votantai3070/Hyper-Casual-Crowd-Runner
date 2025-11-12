@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyGroup : MonoBehaviour
 {
     [Header("Elements")]
-    [SerializeField] private Enemy enemyPrefab;
+    [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Transform enemyParent;
 
     [Header("Settings")]
@@ -29,7 +29,7 @@ public class EnemyGroup : MonoBehaviour
 
     private void CreateNewEnemy(int i)
     {
-        Enemy enemy = Instantiate(enemyPrefab, enemyParent);
+        GameObject enemy = ObjectPool.instance.GetObject(enemyPrefab, enemyParent);
 
         Vector3 worldTransform = transform.TransformPoint(GetRunnerLocalPosition(i));
 

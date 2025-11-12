@@ -19,8 +19,6 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("targetRunner: " + targetRunner);
-
         ManageState();
     }
 
@@ -37,39 +35,12 @@ public class Enemy : MonoBehaviour
                 break;
         }
     }
-
-    private void RunTowardsTarget()
-    {
-        if (targetRunner == null)
-        {
-            SearchTarget();
-            return;
-        }
-
-        transform.position = Vector3.MoveTowards(transform.position, targetRunner.position, moveSpeed * Time.deltaTime);
-
-        if (Vector3.Distance(transform.position, targetRunner.position) < .5f)
-        {
-            SoundManager.instance.SetSoundEffect(SoundEffect.RunnerDie);
-
-            Destroy(targetRunner.gameObject);
-            Destroy(gameObject);
-        }
-    }
-
-    private void StartRunningToTarget()
-    {
-        enemyState = EnemyState.Running;
-        GetComponentInChildren<Animator>().Play("Run");
-    }
-
     private void SearchTarget()
     {
         int count = Physics.OverlapSphereNonAlloc(transform.position, searchRadius, detectedCollider);
 
-        Debug.Log("count: " + count);
-
         float minDistance = float.MaxValue;
+        Transform nearestTarget = null;
 
         for (int i = 0; i < count; i++)
         {
@@ -79,11 +50,43 @@ public class Enemy : MonoBehaviour
                 if (distance < minDistance)
                 {
                     minDistance = distance;
-                    targetRunner = runner.transform;
+                    nearestTarget = runner.transform;
                 }
+            }
 
+            if (nearestTarget != null)
+            {
+                targetRunner = nearestTarget;
                 StartRunningToTarget();
             }
+        }
+    }
+    private void RunTowardsTarget()
+    {
+        if (targetRunner == null)
+        {
+            SearchTarget();
+            return;
+        }
+
+        transform.position = Vector3.MoveTowards(transform.position, targetRunner.position, moveSpeed * Time.deltaTime);
+    }
+
+    private void StartRunningToTarget()
+    {
+        enemyState = EnemyState.Running;
+        GetComponentInChildren<Animator>().Play("Run");
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent<Runner>(out var runner))
+        {
+            SoundManager.instance.SetSoundEffect(SoundEffect.RunnerDie);
+
+            ObjectPool.instance.DelayReturnToPool(runner.gameObject);
+            ObjectPool.instance.DelayReturnToPool(gameObject);
         }
     }
 }
