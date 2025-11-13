@@ -1,10 +1,11 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DataManager : MonoBehaviour
+public class DataCoinManager : MonoBehaviour
 {
-    public static DataManager instance;
+    public static DataCoinManager instance;
 
     [SerializeField] private TextMeshProUGUI[] coinsText;
     private int coins;
@@ -19,10 +20,12 @@ public class DataManager : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.GetInt("coins", 0) > 0)
-            PlayerPrefs.DeleteKey("coins");
+        //if (PlayerPrefs.GetInt("coins", 0) > 0)
+        //    PlayerPrefs.DeleteKey("coins");
 
         coins = PlayerPrefs.GetInt("coins", 0);
+
+        //AddCoins(300);
     }
 
     // Update is called once per frame
@@ -47,4 +50,16 @@ public class DataManager : MonoBehaviour
 
         PlayerPrefs.SetInt("coins", coins);
     }
+
+    public void UseCoins(int skinPrice)
+    {
+        coins -= skinPrice;
+
+        UpdateCoinsText();
+
+        PlayerPrefs.SetInt("coins", coins);
+    }
+
+    public int GetCoin() => coins;
+
 }

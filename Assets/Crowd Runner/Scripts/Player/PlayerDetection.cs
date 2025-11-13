@@ -58,7 +58,7 @@ public class PlayerDetection : MonoBehaviour
 
             else if (detectedCollider[i].CompareTag("Coin"))
             {
-                DataManager.instance.AddCoins(1);
+                DataCoinManager.instance.AddCoins(1);
 
                 Destroy(detectedCollider[i].transform.parent.gameObject);
             }

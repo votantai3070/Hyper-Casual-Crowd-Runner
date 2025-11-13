@@ -24,7 +24,7 @@ public class ObjectPool : MonoBehaviour
         //InitializeNewPool(runnerPrefab, runnersParent);
     }
 
-    private void InitializeNewPool(GameObject prefab, Transform parentTransform)
+    private void InitializeNewPool(GameObject prefab, Transform parentTransform = null)
     {
         poolDict[prefab] = new Queue<GameObject>();
 
@@ -33,7 +33,7 @@ public class ObjectPool : MonoBehaviour
             CreateNewObject(prefab, parentTransform);
         }
     }
-    private void CreateNewObject(GameObject prefab, Transform parentTransform)
+    private void CreateNewObject(GameObject prefab, Transform parentTransform = null)
     {
         GameObject newObj = Instantiate(prefab, transform);
 
@@ -47,7 +47,7 @@ public class ObjectPool : MonoBehaviour
         poolDict[prefab].Enqueue(newObj);
     }
 
-    public GameObject GetObject(GameObject prefab, Transform parentTransform)
+    public GameObject GetObject(GameObject prefab, Transform parentTransform = null)
     {
         if (!poolDict.ContainsKey(prefab))
             InitializeNewPool(prefab, parentTransform);
