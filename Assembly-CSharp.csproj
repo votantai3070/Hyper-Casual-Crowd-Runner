@@ -70,6 +70,7 @@
     <Compile Include="Assets\Crowd Runner\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Managers\DataCoinManager.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Managers\UIManager.cs" />
+    <Compile Include="Assets\Crowd Runner\Scripts\Player\PlayerSelector.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Enemy\EnemyGroup.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Managers\SoundManager.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\ObjectPool\PooledObject.cs" />
@@ -81,7 +82,9 @@
     <Compile Include="Assets\Crowd Runner\Scripts\Managers\SettingsManager.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Player\Runner.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Data\LevelSO.cs" />
+    <Compile Include="Assets\Instant Screenshot\Scripts\Screenshot_Demo.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Crowd Runner\Scripts\Player\RunnerSelector.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Player\PlayerAnimation.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Player\PlayerDetection.cs" />
     <Compile Include="Assets\Crowd Runner\Scripts\Doors.cs" />
@@ -99,6 +102,7 @@
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\Instant Screenshot\Instant Screenshot.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
@@ -586,6 +590,10 @@
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@d6f9955a5d5f\Mono.Cecil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Instant Screenshot">
+      <HintPath>Assets\Instant Screenshot\Instant Screenshot.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">

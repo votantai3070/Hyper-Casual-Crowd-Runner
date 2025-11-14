@@ -70,6 +70,9 @@ public class ObjectPool : MonoBehaviour
     {
         GameObject originalPrefab = objectToReturn.GetComponent<PooledObject>().originalPrefab;
 
+        if (originalPrefab != null)
+            InitializeNewPool(originalPrefab, transform);
+
         objectToReturn.SetActive(false);
         objectToReturn.transform.parent = transform;
 

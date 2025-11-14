@@ -5,9 +5,13 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
+    public static ShopManager instance;
+
     [Header("Elements")]
     [SerializeField] private SkinButton[] skinButtons;
     [SerializeField] private Button purchaseButton;
+    [SerializeField] private PlayerSelector playerSelector;
+    private System.Action<int> onSkinSelected;
 
     [Header("Skin")]
     [SerializeField] private Sprite[] skins;
@@ -18,12 +22,34 @@ public class ShopManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+
+        instance = this;
+
         priceText.text = skinPrice.ToString();
+
     }
 
     private void Start()
     {
+        SelectSkin(GetLastSelectedSkin());
+
         ConfigureButtons();
+
+        onSkinSelected += GetSkinSelectedIndex;
+    }
+
+    private void OnDestroy()
+    {
+        onSkinSelected -= GetSkinSelectedIndex;
+    }
+
+    private void GetSkinSelectedIndex(int skinIndex)
+    {
+        playerSelector.SelectSkin(skinIndex);
     }
 
     private void Update()
@@ -51,12 +77,6 @@ public class ShopManager : MonoBehaviour
         skinButtons[skinIndex].Unlocked();
     }
 
-    private void UnlockSkin(SkinButton skinButton)
-    {
-        int skinIndex = skinButton.transform.GetSiblingIndex();
-
-        UnlockSkin(skinIndex);
-    }
 
     private void SelectSkin(int skinIndex)
     {
@@ -68,6 +88,9 @@ public class ShopManager : MonoBehaviour
             else
                 skinButtons[i].Deselect();
         }
+        onSkinSelected?.Invoke(skinIndex);
+
+        SaveLastSelectedSkin(skinIndex);
     }
 
     public void PurchaseSkinBtn()
@@ -84,18 +107,22 @@ public class ShopManager : MonoBehaviour
 
         SkinButton randomSkinButton = skinButtonsList[Random.Range(0, skinButtonsList.Count)];
 
-        UnlockSkin(randomSkinButton);
+        UnlockSkin(randomSkinButton.transform.GetSiblingIndex());
         SelectSkin(randomSkinButton.transform.GetSiblingIndex());
 
         DataCoinManager.instance.UseCoins(skinPrice);
 
     }
 
-    private void UpdatePurchaseButton()
+    public void UpdatePurchaseButton()
     {
         if (DataCoinManager.instance.GetCoin() < skinPrice)
             purchaseButton.interactable = false;
         else
             purchaseButton.interactable = true;
     }
+
+    private int GetLastSelectedSkin() => PlayerPrefs.GetInt("lastSelectedSkin", 0);
+
+    private void SaveLastSelectedSkin(int skinIndex) => PlayerPrefs.SetInt("lastSelectedSkin", skinIndex);
 }

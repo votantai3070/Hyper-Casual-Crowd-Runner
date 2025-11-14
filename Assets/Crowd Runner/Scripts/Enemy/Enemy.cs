@@ -39,6 +39,8 @@ public class Enemy : MonoBehaviour
     {
         int count = Physics.OverlapSphereNonAlloc(transform.position, searchRadius, detectedCollider);
 
+        Debug.Log("Count: " + count);
+
         float minDistance = float.MaxValue;
         Transform nearestTarget = null;
 
@@ -85,7 +87,7 @@ public class Enemy : MonoBehaviour
         {
             SoundManager.instance.SetSoundEffect(SoundEffect.RunnerDie);
 
-            ObjectPool.instance.DelayReturnToPool(runner.gameObject);
+            ObjectPool.instance.DelayReturnToPool(runner.transform.parent.gameObject);
             ObjectPool.instance.DelayReturnToPool(gameObject);
         }
     }

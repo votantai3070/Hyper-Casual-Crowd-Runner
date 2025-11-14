@@ -6,12 +6,15 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private ShopManager shopManager;
+
     [Header("Elements")]
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject levelCompletePanel;
     [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject shopPanel;
 
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private Slider progressBarSlider;
@@ -38,6 +41,18 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         UpdateProgressBar();
+    }
+
+    public void ShowShopPanel()
+    {
+        shopPanel.SetActive(true);
+        menuPanel.SetActive(false);
+        shopManager.UpdatePurchaseButton();
+    }
+    public void HideShopPanel()
+    {
+        shopPanel.SetActive(false);
+        menuPanel.SetActive(true);
     }
 
     public void ShowSettingsPanel()

@@ -1,11 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CrowdSystem : MonoBehaviour
 {
     [Header("Elements")]
     [SerializeField] Transform runnersParent;
-    [SerializeField] GameObject runnerPrefab;
+    [SerializeField] private GameObject runnerPrefab;
     private PlayerAnimation playerAnimation;
 
     [Header("Setting")]
@@ -27,14 +26,21 @@ public class CrowdSystem : MonoBehaviour
 
         PlaceRunners();
 
+
         if (runnersParent.childCount <= 0)
             GameManager.instance.SetGameState(GameState.GameOver);
     }
     private void GenerateRunner()
     {
+        CreateNewRunner();
+    }
+
+    private void CreateNewRunner()
+    {
         GameObject runner = ObjectPool.instance.GetObject(runnerPrefab, runnersParent);
         runner.transform.localPosition = Vector3.zero;
     }
+
     private void PlaceRunners()
     {
         for (int i = 0; i < runnersParent.childCount; i++)
@@ -84,7 +90,10 @@ public class CrowdSystem : MonoBehaviour
     private void AddRunner(int amount)
     {
         for (int i = 0; i < amount; i++)
-            ObjectPool.instance.GetObject(runnerPrefab, runnersParent);
+        {
+            GameObject newRunner = ObjectPool.instance.GetObject(runnerPrefab, runnersParent);
+            newRunner.transform.localPosition = Vector3.zero;
+        }
 
         playerAnimation.Run();
     }
