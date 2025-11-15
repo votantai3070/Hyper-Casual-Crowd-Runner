@@ -9,7 +9,10 @@ public class VibrationManager : MonoBehaviour
     private void Awake()
     {
         if (instance != null)
+        {
             Destroy(instance);
+            return;
+        }
 
         instance = this;
     }

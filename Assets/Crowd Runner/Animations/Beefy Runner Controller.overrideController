@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Beefy Runner Controller
+  m_Controller: {fileID: 9100000, guid: 8c2646b30a5ca13458f65fbb763200a2, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 4027d8ebdbc529049ba43736007e4b01, type: 2}
+    m_OverrideClip: {fileID: -203655887218126122, guid: fd3175212e3bbd84d93b9a33563db902, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 8ce96f1e927f45e4d93fa1794ed2a109, type: 2}
+    m_OverrideClip: {fileID: -203655887218126122, guid: ce529bfc856c5384ab10c793ca486a2e, type: 3}

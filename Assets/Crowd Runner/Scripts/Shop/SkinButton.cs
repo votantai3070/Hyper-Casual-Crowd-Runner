@@ -10,7 +10,7 @@ public class SkinButton : MonoBehaviour
     [SerializeField] private GameObject lockImage;
     [SerializeField] private GameObject selector;
 
-    private bool unlocked = false;
+    [SerializeField] private bool unlocked = false;
     private bool selected = false;
 
     public void Configure(Sprite skinSprite, bool unlocked)

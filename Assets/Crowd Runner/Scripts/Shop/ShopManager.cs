@@ -25,6 +25,7 @@ public class ShopManager : MonoBehaviour
         if (instance != null)
         {
             Destroy(gameObject);
+            return;
         }
 
         instance = this;
@@ -59,7 +60,7 @@ public class ShopManager : MonoBehaviour
 
     private void ConfigureButtons()
     {
-        for (int i = 0; i < skinButtons.Length; i++)
+        for (int i = 1; i < skinButtons.Length; i++)
         {
             bool unlocked = PlayerPrefs.GetInt("skinButton" + i) == 1;
 
