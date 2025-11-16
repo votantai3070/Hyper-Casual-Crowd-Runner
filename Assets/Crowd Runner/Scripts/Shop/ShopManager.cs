@@ -15,6 +15,7 @@ public class ShopManager : MonoBehaviour
 
     [Header("Skin")]
     [SerializeField] private Sprite[] skins;
+    [SerializeField] GameObject objectPool;
 
     [Header("Price")]
     [SerializeField] private int skinPrice;
@@ -60,7 +61,7 @@ public class ShopManager : MonoBehaviour
 
     private void ConfigureButtons()
     {
-        for (int i = 1; i < skinButtons.Length; i++)
+        for (int i = 0; i < skinButtons.Length; i++)
         {
             bool unlocked = PlayerPrefs.GetInt("skinButton" + i) == 1;
 
@@ -92,6 +93,14 @@ public class ShopManager : MonoBehaviour
         onSkinSelected?.Invoke(skinIndex);
 
         SaveLastSelectedSkin(skinIndex);
+
+        for (int i = 0; i < objectPool.transform.childCount; i++)
+        {
+            if (objectPool.transform.GetChild(i).CompareTag("Runner"))
+            {
+                objectPool.transform.GetChild(i).GetComponent<RunnerSelector>().SelectRunner(skinIndex);
+            }
+        }
     }
 
     public void PurchaseSkinBtn()

@@ -10598,6 +10598,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ffd35c45c984c23488bf7586b136085b, type: 3}
   - {fileID: 21300000, guid: 9440ad496bcbccd4cafea071c96b7884, type: 3}
   - {fileID: 21300000, guid: f66f150f3cc0ed74aa38c280cbe1aa96, type: 3}
+  objectPool: {fileID: 719237355}
   skinPrice: 100
   priceText: {fileID: 1005442066}
 --- !u!1 &2143400106
